@@ -1,6 +1,203 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue"
+    tools:context=".ui.movie.MovieDetailFragment">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/posterConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="375dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/posterImageView"
+                android:layout_width="match_parent"
+                android:layout_height="375dp"
+                android:alpha="0.5"
+                android:scaleType="centerCrop"
+                android:src="@drawable/big_bang_movie"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/buttonBack"
+            android:layout_width="24dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="25dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/arrow_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="56dp"
+            android:text="Avengers"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonBack" />
+
+        <TextView
+            android:id="@+id/durationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="2dp"
+            android:text="1 hora e 39 minutos"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleTextView" />
+
+        <TextView
+            android:id="@+id/genresTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="2dp"
+            android:text="Action, Super Hero"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/durationTextView" />
+
+        <ImageView
+            android:id="@+id/icStar"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="2dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_star"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/genresTextView" />
+
+        <TextView
+            android:id="@+id/ratingTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:text="8.9/10 Média de votos"
+            android:textColor="@color/gray"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@id/icStar"
+            app:layout_constraintTop_toBottomOf="@id/genresTextView" />
+
+        <ImageView
+            android:id="@+id/posterImageViewDetail"
+            android:layout_width="159dp"
+            android:layout_height="200dp"
+            android:layout_marginEnd="21dp"
+            android:contentDescription="TODO"
+            android:scaleType="centerCrop"
+            android:src="@drawable/big_bang_movie"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@id/ratingTextView"
+            app:layout_constraintTop_toTopOf="@id/titleTextView" />
+
+        <TextView
+            android:id="@+id/synopsisLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="13dp"
+            android:text="Sinopse"
+            android:textColor="@android:color/white"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/posterConstraintLayout" />
+
+        <TextView
+            android:id="@+id/synopsisTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="10dp"
+            android:text="The Asgardian Loki encounters the Other, the leader of an extraterrestrial race known as the Chitauri. In exchange for retrieving the Tesseract..."
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/synopsisLabelTextView" />
+
+        <TextView
+            android:id="@+id/commentsLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="18dp"
+            android:text="Comentários"
+            android:textColor="@android:color/white"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/synopsisTextView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewComments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="19dp"
+            android:background="@color/dark_blue_light"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/commentsLabelTextView" />
+
+        <TextView
+            android:id="@+id/nowPlayingTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/open_sans_medium"
+            android:gravity="start"
+            android:text="Mais Como Este"
+            android:textColor="@android:color/white"
+            android:textSize="21sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerViewComments" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewMoviesDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="19dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nowPlayingTextView"
+            tools:listitem="@layout/item_movie" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
