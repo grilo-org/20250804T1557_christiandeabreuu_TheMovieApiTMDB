@@ -1,0 +1,26 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/movieHomeFragment">
+
+    <fragment
+        android:id="@+id/movieHomeFragment"
+        android:name="com.example.desafiodimensa.ui.movie.MovieHomeFragment"
+        android:label="MovieHomeFragment"
+        tools:layout="@layout/fragment_movie_home">
+        <action
+            android:id="@+id/action_movieHomeFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.example.desafiodimensa.ui.movie.MovieDetailFragment"
+        android:label="MovieDetailFragment"
+        tools:layout="@layout/fragment_movie_detail">
+        <action
+            android:id="@+id/action_movieDetailFragment_to_movieHomeFragment"
+            app:destination="@id/movieHomeFragment" />
+    </fragment>
+</navigation>
