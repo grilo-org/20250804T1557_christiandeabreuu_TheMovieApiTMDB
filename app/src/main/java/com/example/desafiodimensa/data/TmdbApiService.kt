@@ -4,8 +4,26 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface TMDbApiService {
-    @GET("movie/popular")
-    suspend fun getPopularMovies(
+    @GET("movie/now_playing")
+    suspend fun getNowPlayingMovies(
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int = 1
+    ): MovieResponse
+
+    @GET("movie/upcoming")
+    suspend fun getComingSoonMovies(
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int = 1
+    ): MovieResponse
+
+    @GET("movie/popular") // Endpoint para filmes mais populares
+    suspend fun getMorePopularMovies(
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int = 1
+    ): MovieResponse
+
+    @GET("movie/top_rated")
+    suspend fun getTopRatedMovies(
         @Query("api_key") apiKey: String,
         @Query("page") page: Int = 1
     ): MovieResponse
