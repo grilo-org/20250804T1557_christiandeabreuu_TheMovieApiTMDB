@@ -1,5 +1,6 @@
 package com.example.desafiodimensa.ui.movie
 
+import MovieAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import com.example.desafiodimensa.extensions.viewBinding
 
 class MovieHomeFragment : Fragment() {
 
+
     private lateinit var viewModel: MovieViewModel
     private lateinit var nowPlayingAdapter: MovieAdapter
     private lateinit var comingSoonAdapter: MovieAdapter
@@ -33,6 +35,7 @@ class MovieHomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         val recyclerViewNowPlaying = view.findViewById<RecyclerView>(R.id.recyclerViewNowPlaying)
         recyclerViewNowPlaying.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         nowPlayingAdapter = MovieAdapter(emptyList(), ::onMoveClick)
@@ -81,6 +84,7 @@ class MovieHomeFragment : Fragment() {
 
     private fun onMoveClick(movie: Movie) {
         val bundle = bundleOf("KEY" to movie)
+
         NavHostFragment.findNavController(this).navigate(
             R.id.action_movieHomeFragment_to_movieDetailFragment, bundle)
     }

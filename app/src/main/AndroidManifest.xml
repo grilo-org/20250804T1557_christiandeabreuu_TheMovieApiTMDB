@@ -15,9 +15,6 @@
         android:theme="@style/Base.Theme.DesafioDimensa"
         tools:targetApi="31">
 
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"/>
         <activity android:name=".ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>

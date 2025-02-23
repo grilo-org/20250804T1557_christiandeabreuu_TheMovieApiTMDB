@@ -6,4 +6,8 @@
     </style>
 
     <style name="Theme.DesafioDimensa" parent="Base.Theme.DesafioDimensa" />
+    <style name="RoundedCorners">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
 </resources>
