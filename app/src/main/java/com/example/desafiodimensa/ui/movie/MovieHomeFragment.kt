@@ -10,16 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.desafiodimensa.R
 import com.example.desafiodimensa.data.Movie
-import com.example.desafiodimensa.databinding.FragmentMovieHomeBinding
-import com.example.desafiodimensa.extensions.viewBinding
 
 class MovieHomeFragment : Fragment() {
-
 
     private lateinit var viewModel: MovieViewModel
     private lateinit var nowPlayingAdapter: MovieAdapter
@@ -78,8 +74,6 @@ class MovieHomeFragment : Fragment() {
         viewModel.fetchComingSoonMovies("13296e8a57292f8440cd14c19aa739ec")
         viewModel.fetchMorePopularMovies("13296e8a57292f8440cd14c19aa739ec")
         viewModel.fetchTopRatedMovies("13296e8a57292f8440cd14c19aa739ec")
-
-
     }
 
     private fun onMoveClick(movie: Movie) {

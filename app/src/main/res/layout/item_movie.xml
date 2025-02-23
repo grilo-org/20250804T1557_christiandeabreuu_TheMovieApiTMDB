@@ -8,8 +8,8 @@
         android:id="@+id/posterImageView"
         android:layout_width="150dp"
         android:layout_height="200dp"
-        android:contentDescription="TODO"
         android:layout_marginStart="4dp"
+        android:contentDescription="TODO"
         android:scaleType="fitCenter"
         app:shapeAppearanceOverlay="@style/RoundedCorners" />
 </LinearLayout>

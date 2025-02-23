@@ -1,7 +1,6 @@
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
@@ -23,10 +22,6 @@ class MovieAdapter(
         val movie = movies[position]
         holder.bind(movie)
         holder.itemView.setOnClickListener { onMovieClick(movie) }
-
-        // Suponha que o movie tenha uma propriedade "posterUrl" com a URL da imagem
-        val imageUrl = movie.poster_path
-
     }
 
     override fun getItemCount(): Int = movies.size
@@ -46,7 +41,5 @@ class MovieAdapter(
                 transformations(RoundedCornersTransformation(8f))
             }
         }
-
-
     }
 }

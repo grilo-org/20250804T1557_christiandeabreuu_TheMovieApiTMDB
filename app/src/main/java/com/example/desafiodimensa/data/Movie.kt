@@ -2,7 +2,6 @@ package com.example.desafiodimensa.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import kotlin.time.Duration
 
 @Parcelize
 data class Movie(
