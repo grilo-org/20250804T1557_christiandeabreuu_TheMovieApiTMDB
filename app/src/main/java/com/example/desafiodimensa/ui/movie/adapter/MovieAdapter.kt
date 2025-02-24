@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
+import com.example.desafiodimensa.Constants
 import com.example.desafiodimensa.R
 import com.example.desafiodimensa.data.Movie
 import com.google.android.material.imageview.ShapeableImageView
 
 class MovieAdapter(
-    private var movies: List<Movie>,
-    private val onMovieClick: (Movie) -> Unit
+    private var movies: List<Movie>, private val onMovieClick: (Movie) -> Unit
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -38,7 +38,8 @@ class MovieAdapter(
             itemView.findViewById(R.id.posterImageView)
 
         fun bind(movie: Movie) {
-            val posterUrl = "https://image.tmdb.org/t/p/w500${movie.poster_path}"
+            val posterUrl = "${Constants.IMAGE_URL}${movie.poster_path}"
+
             posterImageView.load(posterUrl) {
                 transformations(RoundedCornersTransformation(8f))
             }

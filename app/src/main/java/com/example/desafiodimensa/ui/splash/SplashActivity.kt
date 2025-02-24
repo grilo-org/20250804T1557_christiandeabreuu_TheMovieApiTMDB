@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.desafiodimensa.InitialActivity
+import com.example.desafiodimensa.ui.initial.InitialActivity
 import com.example.desafiodimensa.R
 import com.example.desafiodimensa.databinding.ActivitySplashBinding
 

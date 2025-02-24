@@ -65,13 +65,13 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
     private fun goToBack() {
         binding.buttonBack.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().popBackStack()
         }
     }
 
     @SuppressLint("SetTextI18n")
     private fun getInfosMovieDetail() {
-        val infosMovie = arguments?.getParcelable<Movie>(Constants.KEY)
+        val infosMovie = arguments?.getParcelable<Movie>(Constants.KEY, Movie::class.java)
 
         infosMovie?.let {
             binding.titleTextView.text = it.title

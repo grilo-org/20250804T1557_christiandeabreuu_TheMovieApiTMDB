@@ -20,6 +20,14 @@
     <string name="movie_detail_view_model_log_error_message_review">Erro ao buscar comentários: </string>
     <string name="movie_detail_view_model_log_error_message_movie">Erro ao buscar filmes: </string>
 
+    <string name="reviews_adapter_name_1">Alexandra</string>
+    <string name="reviews_adapter_comments_1">It was great. This movie was a continuation of the Avengers of the Eternal War. See it first and then this movie</string>
+    <string name="reviews_adapter_name_2">Jason</string>
+    <string name="reviews_adapter_comments_2">The best hero is Iron Man. Not because of his clothes, but because of his personality</string>
+    <string name="reviews_adapter_name_3">Amanda</string>
+    <string name="reviews_adapter_comments_3">It was interesting. I think Loki and Stark and Captain America will die soon</string>
+
+
 
 
 </resources>
