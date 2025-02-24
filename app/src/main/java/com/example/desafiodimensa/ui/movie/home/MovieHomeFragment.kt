@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.desafiodimensa.Constants
 import com.example.desafiodimensa.R
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.example.desafiodimensa.data.Movie
 import com.example.desafiodimensa.databinding.FragmentMovieHomeBinding
 import com.example.desafiodimensa.ui.movie.adapter.MovieAdapter
@@ -19,7 +20,7 @@ import com.example.desafiodimensa.ui.movie.adapter.MovieAdapter
 class MovieHomeFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieHomeBinding
-    private val viewModel: MovieHomeViewModel by viewModels()
+    private val viewModel: MovieHomeViewModel by viewModel()
     private lateinit var nowPlayingAdapter: MovieAdapter
     private lateinit var comingSoonAdapter: MovieAdapter
     private lateinit var morePopularAdapter: MovieAdapter
