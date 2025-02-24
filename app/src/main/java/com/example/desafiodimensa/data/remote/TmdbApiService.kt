@@ -1,5 +1,7 @@
-package com.example.desafiodimensa.data
+package com.example.desafiodimensa.data.remote
 
+import com.example.desafiodimensa.data.model.MovieResponse
+import com.example.desafiodimensa.data.model.ReviewResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

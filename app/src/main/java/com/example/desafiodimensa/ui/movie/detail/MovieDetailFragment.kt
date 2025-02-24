@@ -6,20 +6,17 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.example.desafiodimensa.Constants
+import com.example.desafiodimensa.util.Constants
 import com.example.desafiodimensa.R
-import com.example.desafiodimensa.data.Movie
+import com.example.desafiodimensa.data.model.Movie
 import com.example.desafiodimensa.databinding.FragmentMovieDetailBinding
 import com.example.desafiodimensa.extensions.viewBinding
 import com.example.desafiodimensa.ui.movie.adapter.MovieAdapter
 import com.example.desafiodimensa.ui.movie.adapter.ReviewAdapter
-
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 

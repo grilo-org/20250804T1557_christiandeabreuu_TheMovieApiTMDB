@@ -5,10 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.desafiodimensa.Constants
 import com.example.desafiodimensa.R
-import com.example.desafiodimensa.RetrofitClient
-import com.example.desafiodimensa.data.Movie
+import com.example.desafiodimensa.data.model.Movie
 import com.example.desafiodimensa.domain.usecase.GetComingSoonMoviesUseCase
 import com.example.desafiodimensa.domain.usecase.GetMorePopularMoviesUseCase
 import com.example.desafiodimensa.domain.usecase.GetNowPlayingMoviesUseCase
@@ -34,27 +32,63 @@ class MovieHomeViewModel(
     private val _topRatedMovies = MutableLiveData<List<Movie>>()
     val topRatedMovies: LiveData<List<Movie>> get() = _topRatedMovies
 
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> get() = _errorMessage
+
     fun fetchNowPlayingMovies(apiKey: String) {
         viewModelScope.launch {
-            _nowPlayingMovies.value = getNowPlayingMoviesUseCase(apiKey)
+            try {
+                _nowPlayingMovies.value = getNowPlayingMoviesUseCase(apiKey)
+            } catch (e: Exception) {
+                Log.e(
+                    R.string.movie_home_view_model_log_tag.toString(),
+                    R.string.movie_home_view_model_log_error_message.toString() + " ${e.message}"
+                )
+                _errorMessage.value = "Erro ao carregar filmes em cartaz: ${e.message}"
+            }
         }
     }
 
     fun fetchComingSoonMovies(apiKey: String) {
         viewModelScope.launch {
-            _comingSoonMovies.value = getComingSoonMoviesUseCase(apiKey)
+            try {
+                _comingSoonMovies.value = getComingSoonMoviesUseCase(apiKey)
+            } catch (e: Exception) {
+                Log.e(
+                    R.string.movie_home_view_model_log_tag.toString(),
+                    R.string.movie_home_view_model_log_error_message.toString() + " ${e.message}"
+                )
+                _errorMessage.value = "Erro ao carregar filmes em breve: ${e.message}"
+            }
         }
     }
 
     fun fetchMorePopularMovies(apiKey: String) {
         viewModelScope.launch {
-            _mostPopularMovies.value = getMorePopularMoviesUseCase(apiKey)
+            try {
+                _mostPopularMovies.value = getMorePopularMoviesUseCase(apiKey)
+            } catch (e: Exception) {
+                Log.e(
+                    R.string.movie_home_view_model_log_tag.toString(),
+                    R.string.movie_home_view_model_log_error_message.toString() + " ${e.message}"
+                )
+                _errorMessage.value = "Erro ao carregar filmes em breve: ${e.message}"
+            }
         }
     }
 
     fun fetchTopRatedMovies(apiKey: String) {
         viewModelScope.launch {
-            _topRatedMovies.value = getTopRatedMoviesUseCase(apiKey)
+            try {
+                _topRatedMovies.value = getTopRatedMoviesUseCase(apiKey)
+
+            } catch (e: Exception) {
+                Log.e(
+                    R.string.movie_home_view_model_log_tag.toString(),
+                    R.string.movie_home_view_model_log_error_message.toString() + " ${e.message}"
+                )
+                _errorMessage.value = "Erro ao carregar filmes em breve: ${e.message}"
+            }
         }
     }
 }

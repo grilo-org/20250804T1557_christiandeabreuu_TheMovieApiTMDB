@@ -1,4 +1,4 @@
-package com.example.desafiodimensa
+package com.example.desafiodimensa.util
 
 object Constants {
 

@@ -1,6 +1,6 @@
 package com.example.desafiodimensa.di
 
-import com.example.desafiodimensa.data.TMDbApiService
+import com.example.desafiodimensa.data.remote.TMDbApiService
 import com.example.desafiodimensa.domain.repository.MovieRepository
 import com.example.desafiodimensa.domain.repository.ReviewRepository
 import com.example.desafiodimensa.domain.usecase.GetComingSoonMoviesUseCase

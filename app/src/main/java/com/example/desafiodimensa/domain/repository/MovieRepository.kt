@@ -1,7 +1,7 @@
 package com.example.desafiodimensa.domain.repository
 
-import com.example.desafiodimensa.data.Movie
-import com.example.desafiodimensa.data.TMDbApiService
+import com.example.desafiodimensa.data.model.Movie
+import com.example.desafiodimensa.data.remote.TMDbApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

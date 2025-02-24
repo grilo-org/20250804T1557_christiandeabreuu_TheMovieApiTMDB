@@ -1,4 +1,4 @@
-package com.example.desafiodimensa.data
+package com.example.desafiodimensa.data.model
 
 data class ReviewResponse(
     val id: Int,

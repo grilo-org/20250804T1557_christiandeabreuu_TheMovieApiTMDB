@@ -3,7 +3,7 @@ package com.example.desafiodimensa.ui.movie.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.desafiodimensa.data.Review
+import com.example.desafiodimensa.data.model.Review
 import com.example.desafiodimensa.databinding.ItemComentsDetailBinding
 
 class ReviewAdapter(

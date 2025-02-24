@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.example.desafiodimensa.Constants
+import com.example.desafiodimensa.util.Constants
 import com.example.desafiodimensa.R
-import com.example.desafiodimensa.data.Movie
+import com.example.desafiodimensa.data.model.Movie
 import com.google.android.material.imageview.ShapeableImageView
 
 class MovieAdapter(

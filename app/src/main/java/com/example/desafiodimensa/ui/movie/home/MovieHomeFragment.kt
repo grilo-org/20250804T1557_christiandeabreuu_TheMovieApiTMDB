@@ -4,16 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.desafiodimensa.Constants
+import com.example.desafiodimensa.util.Constants
 import com.example.desafiodimensa.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.example.desafiodimensa.data.Movie
+import com.example.desafiodimensa.data.model.Movie
 import com.example.desafiodimensa.databinding.FragmentMovieHomeBinding
 import com.example.desafiodimensa.ui.movie.adapter.MovieAdapter
 
@@ -39,6 +39,7 @@ class MovieHomeFragment : Fragment() {
         setupRecyclerViews()
         setupViewModel()
         fetchMovies()
+
     }
 
     private fun setupRecyclerViews() {
@@ -86,6 +87,15 @@ class MovieHomeFragment : Fragment() {
         viewModel.topRatedMovies.observe(viewLifecycleOwner, Observer { movies ->
             topRatedAdapter.updateMovies(movies)
         })
+
+        // Observa mensagens de erro
+        viewModel.errorMessage.observe(viewLifecycleOwner, Observer { error ->
+            error?.let {
+                // Exibe um Toast com a mensagem de erro
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        })
+
     }
 
     private fun fetchMovies() {

@@ -1,6 +1,5 @@
-package com.example.desafiodimensa
+package com.example.desafiodimensa.data.remote
 
-import com.example.desafiodimensa.data.TMDbApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
