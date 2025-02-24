@@ -10,9 +10,14 @@ import com.example.desafiodimensa.R
 import com.example.desafiodimensa.RetrofitClient
 import com.example.desafiodimensa.data.Movie
 import com.example.desafiodimensa.data.Review
+import com.example.desafiodimensa.domain.usecase.GetReviewsUseCase
+import com.example.desafiodimensa.domain.usecase.GetSimilarMoviesUseCase
 import kotlinx.coroutines.launch
 
-class MovieDetailViewModel : ViewModel() {
+class MovieDetailViewModel(
+    private val getReviewsUseCase: GetReviewsUseCase,
+    private val getSimilarMoviesUseCase: GetSimilarMoviesUseCase
+) : ViewModel() {
 
     private val _similarMovies = MutableLiveData<List<Movie>>()
     val similarMovies: LiveData<List<Movie>> get() = _similarMovies

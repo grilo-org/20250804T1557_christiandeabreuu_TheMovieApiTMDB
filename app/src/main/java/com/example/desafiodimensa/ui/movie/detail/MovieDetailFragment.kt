@@ -18,10 +18,13 @@ import com.example.desafiodimensa.extensions.viewBinding
 import com.example.desafiodimensa.ui.movie.adapter.MovieAdapter
 import com.example.desafiodimensa.ui.movie.adapter.ReviewAdapter
 
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
+    private val viewModel: MovieDetailViewModel by viewModel() // Injeção do ViewModel com Koin
+
     private val binding by viewBinding(FragmentMovieDetailBinding::bind)
-    private lateinit var viewModel: MovieDetailViewModel
     private lateinit var reviewAdapter: ReviewAdapter
     private var movie: Movie? = null
     private lateinit var relatedMoviesAdapter: MovieAdapter
@@ -31,8 +34,6 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         arguments?.let {
             movie = it.getParcelable(Constants.Movie)
         }
-
-        viewModel = ViewModelProvider(this).get(MovieDetailViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

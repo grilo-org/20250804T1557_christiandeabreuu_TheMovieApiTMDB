@@ -1,32 +1,36 @@
 package com.example.desafiodimensa.di
 
+import com.example.desafiodimensa.data.TMDbApiService
+import com.example.desafiodimensa.domain.repository.MovieRepository
+import com.example.desafiodimensa.domain.repository.ReviewRepository
+import com.example.desafiodimensa.domain.usecase.GetReviewsUseCase
+import com.example.desafiodimensa.domain.usecase.GetSimilarMoviesUseCase
+import com.example.desafiodimensa.ui.movie.detail.MovieDetailViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
-//import org.koin.android.ext.koin.androidApplication
-//import org.koin.androidx.viewmodel.dsl.viewModel
-//import org.koin.dsl.module
-//
-//val daoModule = module {
-//    single { DatabaseHelper.getInstance(androidApplication())?.userDao() }
-//}
-//
-//val repositoryModule = module {
-//
-//    factory<UserRepository> {
-//        UserRepositoryImpl(get())
-//    }
-//}
-//
-//val useCaseModule = module {
-//    factory { ValidateEmailUseCase() }
-//    factory { ValidatePasswordUseCase() }
-//    factory { ValidateNameUseCase() }
-//    factory { ValidateRepeatedPasswordUseCase() }
-//
-//    factory { AuthUseCase(get(), get(), get()) }
-//    factory { RegisterUseCase(get(), get(), get(), get()) }
-//}
-//
-//val viewModelModule = module {
-//    viewModel { LoginViewModel(get(), get(), get()) }
-//    viewModel { RegisterViewModel(get(), get(), get(), get(), get()) }
-//}
+
+val appModule = module {
+    // Repositório
+    single { MovieRepository(get()) }
+    single { ReviewRepository(get()) }
+
+    // UseCases
+    single { GetReviewsUseCase(get()) }
+    single { GetSimilarMoviesUseCase(get()) }
+
+    // ViewModel
+    viewModel { MovieDetailViewModel(get(), get()) }
+}
+
+val networkModule = module {
+    single {
+        Retrofit.Builder()
+            .baseUrl("https://api.themoviedb.org/3/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(TMDbApiService::class.java)
+    }
+}
