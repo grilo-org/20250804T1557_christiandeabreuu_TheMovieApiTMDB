@@ -2,6 +2,7 @@ package com.example.desafiodimensa.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
 @Parcelize
 data class Movie(
@@ -12,5 +13,6 @@ data class Movie(
     val poster_path: String,
     val release_date: String,
     val vote_average: Double,
-    val runtime: Int
+    val runtime: Int,
+    val genres: List<Genre>?
 ) : Parcelable

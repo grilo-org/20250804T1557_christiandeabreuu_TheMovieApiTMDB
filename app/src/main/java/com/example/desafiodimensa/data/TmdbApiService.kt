@@ -29,12 +29,16 @@ interface TMDbApiService {
         @Query("page") page: Int = 1
     ): MovieResponse
 
-    interface TMDbApiService {
-        @GET("movie/{movie_id}/similar")
-        suspend fun getSimilarMovies(
-            @Path("movie_id") movieId: Int,
-            @Query("api_key") apiKey: String,
-            @Query("page") page: Int = 1
-        ): MovieResponse
-    }
+    @GET("movie/{movie_id}/similar")
+    suspend fun getSimilarMovies(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int = 1
+    ): MovieResponse
+
+    @GET("movie/{movie_id}/reviews")
+    suspend fun getReviews(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String,
+    ): ReviewResponse
 }
