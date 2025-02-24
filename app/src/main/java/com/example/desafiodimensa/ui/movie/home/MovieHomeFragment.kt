@@ -1,86 +1,103 @@
 package com.example.desafiodimensa.ui.movie.home
 
-import com.example.desafiodimensa.ui.movie.adapter.MovieAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.desafiodimensa.Constants
 import com.example.desafiodimensa.R
 import com.example.desafiodimensa.data.Movie
+import com.example.desafiodimensa.databinding.FragmentMovieHomeBinding
+import com.example.desafiodimensa.ui.movie.adapter.MovieAdapter
 
 class MovieHomeFragment : Fragment() {
 
-    private lateinit var viewModel: MovieViewModel
+    private lateinit var binding: FragmentMovieHomeBinding
+    private val viewModel: MovieHomeViewModel by viewModels()
     private lateinit var nowPlayingAdapter: MovieAdapter
     private lateinit var comingSoonAdapter: MovieAdapter
     private lateinit var morePopularAdapter: MovieAdapter
     private lateinit var topRatedAdapter: MovieAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_movie_home, container, false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentMovieHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val recyclerViewNowPlaying = view.findViewById<RecyclerView>(R.id.recyclerViewNowPlaying)
-        recyclerViewNowPlaying.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        nowPlayingAdapter = MovieAdapter(emptyList(), ::onMoveClick)
-        recyclerViewNowPlaying.adapter = nowPlayingAdapter
+        setupRecyclerViews()
+        setupViewModel()
+        fetchMovies()
+    }
 
-        val recyclerViewComingSoon = view.findViewById<RecyclerView>(R.id.recyclerViewComingSoon)
-        recyclerViewComingSoon.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        comingSoonAdapter = MovieAdapter(emptyList(), ::onMoveClick)
-        recyclerViewComingSoon.adapter = comingSoonAdapter
+    private fun setupRecyclerViews() {
+        nowPlayingAdapter = createAdapter()
+        comingSoonAdapter = createAdapter()
+        morePopularAdapter = createAdapter()
+        topRatedAdapter = createAdapter()
 
-        val recyclerViewMostPopular = view.findViewById<RecyclerView>(R.id.recyclerViewMostPopular)
-        recyclerViewMostPopular.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        morePopularAdapter = MovieAdapter(emptyList(), ::onMoveClick)
-        recyclerViewMostPopular.adapter = morePopularAdapter
+        with(binding) {
+            recyclerViewNowPlaying.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            recyclerViewNowPlaying.adapter = nowPlayingAdapter
 
-        val recyclerViewTopRated = view.findViewById<RecyclerView>(R.id.recyclerViewTopRated)
-        recyclerViewTopRated.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        topRatedAdapter = MovieAdapter(emptyList(), ::onMoveClick)
-        recyclerViewTopRated.adapter = topRatedAdapter
+            recyclerViewComingSoon.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            recyclerViewComingSoon.adapter = comingSoonAdapter
 
-        viewModel = ViewModelProvider(this)[MovieViewModel::class.java]
+            recyclerViewMostPopular.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            recyclerViewMostPopular.adapter = morePopularAdapter
 
-        viewModel.nowPlayingMovies.observe(this.viewLifecycleOwner, Observer { movies ->
+            recyclerViewTopRated.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            recyclerViewTopRated.adapter = topRatedAdapter
+        }
+    }
+
+    private fun createAdapter(): MovieAdapter {
+        return MovieAdapter(emptyList(), ::onMoveClick)
+    }
+
+    private fun setupViewModel() {
+        viewModel.nowPlayingMovies.observe(viewLifecycleOwner, Observer { movies ->
             nowPlayingAdapter.updateMovies(movies)
         })
 
-        viewModel.comingSoonMovies.observe(this.viewLifecycleOwner, Observer { movies ->
+        viewModel.comingSoonMovies.observe(viewLifecycleOwner, Observer { movies ->
             comingSoonAdapter.updateMovies(movies)
         })
 
-        viewModel.mostPopularMovies.observe(this.viewLifecycleOwner, Observer { movies ->
+        viewModel.mostPopularMovies.observe(viewLifecycleOwner, Observer { movies ->
             morePopularAdapter.updateMovies(movies)
         })
 
-        viewModel.topRatedMovies.observe(this.viewLifecycleOwner, Observer { movies ->
+        viewModel.topRatedMovies.observe(viewLifecycleOwner, Observer { movies ->
             topRatedAdapter.updateMovies(movies)
         })
+    }
 
-        viewModel.fetchNowPlayingMovies("13296e8a57292f8440cd14c19aa739ec")
-        viewModel.fetchComingSoonMovies("13296e8a57292f8440cd14c19aa739ec")
-        viewModel.fetchMorePopularMovies("13296e8a57292f8440cd14c19aa739ec")
-        viewModel.fetchTopRatedMovies("13296e8a57292f8440cd14c19aa739ec")
+    private fun fetchMovies() {
+        viewModel.fetchNowPlayingMovies(Constants.API_KEY)
+        viewModel.fetchComingSoonMovies(Constants.API_KEY)
+        viewModel.fetchMorePopularMovies(Constants.API_KEY)
+        viewModel.fetchTopRatedMovies(Constants.API_KEY)
     }
 
     private fun onMoveClick(movie: Movie) {
         val bundle = bundleOf("KEY" to movie)
-
         NavHostFragment.findNavController(this).navigate(
-            R.id.action_movieHomeFragment_to_movieDetailFragment, bundle)
+            R.id.action_movieHomeFragment_to_movieDetailFragment, bundle
+        )
     }
-
 }

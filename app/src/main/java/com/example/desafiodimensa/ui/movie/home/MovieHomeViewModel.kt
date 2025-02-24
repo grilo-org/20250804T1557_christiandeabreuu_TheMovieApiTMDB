@@ -5,11 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.desafiodimensa.R
 import com.example.desafiodimensa.RetrofitClient
 import com.example.desafiodimensa.data.Movie
 import kotlinx.coroutines.launch
 
-class MovieViewModel : ViewModel() {
+class MovieHomeViewModel : ViewModel() {
 
     private val _nowPlayingMovies = MutableLiveData<List<Movie>>()
     val nowPlayingMovies: LiveData<List<Movie>> get() = _nowPlayingMovies
@@ -27,10 +28,16 @@ class MovieViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = RetrofitClient.instance.getNowPlayingMovies(apiKey)
-                Log.d("MovieViewModel", "Dados recebidos: ${response.results}")
+                Log.d(
+                    R.string.movie_home_view_model_log_tag.toString(),
+                    (R.string.movie_home_view_model_log_data_message.toString()) + " ${response.results}"
+                )
                 _nowPlayingMovies.value = response.results
             } catch (e: Exception) {
-                Log.e("MovieViewModel", "Erro ao buscar filmes: ${e.message}")
+                Log.e(
+                    R.string.movie_home_view_model_log_tag.toString(),
+                    (R.string.movie_home_view_model_log_error_message.toString()) + " ${e.message}"
+                )
             }
         }
     }
@@ -39,10 +46,16 @@ class MovieViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = RetrofitClient.instance.getComingSoonMovies(apiKey)
-                Log.d("MovieViewModel", "Dados recebidos: ${response.results}")
+                Log.d(
+                    R.string.movie_home_view_model_log_tag.toString(),
+                    (R.string.movie_home_view_model_log_data_message.toString()) + " ${response.results}"
+                )
                 _comingSoonMovies.value = response.results
             } catch (e: Exception) {
-                Log.e("MovieViewModel", "Erro ao buscar filmes mais votados: ${e.message}")
+                Log.e(
+                    R.string.movie_home_view_model_log_tag.toString(),
+                    (R.string.movie_home_view_model_log_error_message.toString()) + " ${e.message}"
+                )
             }
         }
     }
@@ -51,10 +64,16 @@ class MovieViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = RetrofitClient.instance.getMorePopularMovies(apiKey)
-                Log.d("MovieViewModel", "Dados recebidos: ${response.results}")
+                Log.d(
+                    R.string.movie_home_view_model_log_tag.toString(),
+                    (R.string.movie_home_view_model_log_data_message.toString()) + " ${response.results}"
+                )
                 _mostPopularMovies.value = response.results
             } catch (e: Exception) {
-                Log.e("MovieViewModel", "Erro ao buscar filmes: ${e.message}")
+                Log.e(
+                    R.string.movie_home_view_model_log_tag.toString(),
+                    (R.string.movie_home_view_model_log_error_message.toString()) + " ${e.message}"
+                )
             }
         }
     }
@@ -63,10 +82,16 @@ class MovieViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = RetrofitClient.instance.getTopRatedMovies(apiKey)
-                Log.d("MovieViewModel", "Dados recebidos: ${response.results}")
+                Log.d(
+                    R.string.movie_home_view_model_log_tag.toString(),
+                    (R.string.movie_home_view_model_log_data_message.toString()) + " ${response.results}"
+                )
                 _topRatedMovies.value = response.results
             } catch (e: Exception) {
-                Log.e("MovieViewModel", "Erro ao buscar filmes: ${e.message}")
+                Log.e(
+                    R.string.movie_home_view_model_log_tag.toString(),
+                    (R.string.movie_home_view_model_log_error_message.toString()) + " ${e.message}"
+                )
             }
         }
     }

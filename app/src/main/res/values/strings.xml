@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">DesafioDimensa</string>
+
+    <string name="splash_activity_log_tag">SplashActivity</string>
+    <string name="splash_activity_log_message">Inicializando componentes</string>
+
+    <string name="movie_home_fragment_log_tag">MovieHomeFragment</string>
+    <string name="movie_home_fragment_log_message">Inicializando componentes</string>
+
+    <string name="movie_home_view_model_log_tag">MovieHomeViewModel</string>
+    <string name="movie_home_view_model_log_data_message">Dados recebidos: </string>
+    <string name="movie_home_view_model_log_error_message">Erro ao buscar filmes: </string>
+
+    <string name="movie_detail_fragment_log_tag">MovieDetailFragment</string>
+    <string name="movie_detail_fragment_log_message">Inicializando componentes</string>
+    <string name="movie_detail_fragment_base_image_url">https://image.tmdb.org/t/p/w500</string>
+
+    <string name="movie_detail_view_model_log_tag">MovieDetailViewModel</string>
+    <string name="movie_detail_view_model_log_reviews_message">Reviews: </string>
+    <string name="movie_detail_view_model_log_error_message_review">Erro ao buscar comentários: </string>
+    <string name="movie_detail_view_model_log_error_message_movie">Erro ao buscar filmes: </string>
+
+
+
 </resources>
