@@ -17,7 +17,7 @@ interface TMDbApiService {
         @Query("page") page: Int = 1
     ): MovieResponse
 
-    @GET("movie/popular") // Endpoint para filmes mais populares
+    @GET("movie/popular")
     suspend fun getMorePopularMovies(
         @Query("api_key") apiKey: String,
         @Query("page") page: Int = 1
@@ -41,4 +41,10 @@ interface TMDbApiService {
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String,
     ): ReviewResponse
+
+    @GET("movie/{movie_id}")
+    suspend fun getMovieDetail(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String,
+    ): MovieResponse
 }

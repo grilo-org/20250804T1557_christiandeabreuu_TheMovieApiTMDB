@@ -1,3 +1,5 @@
+package com.example.desafiodimensa.ui.movie.adapter
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

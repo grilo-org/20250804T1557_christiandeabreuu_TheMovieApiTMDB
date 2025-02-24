@@ -1,4 +1,4 @@
-package com.example.desafiodimensa.ui.movie
+package com.example.desafiodimensa.ui.movie.home
 
 import android.util.Log
 import androidx.lifecycle.LiveData

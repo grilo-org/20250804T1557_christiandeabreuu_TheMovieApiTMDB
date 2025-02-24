@@ -1,6 +1,6 @@
-package com.example.desafiodimensa.ui.movie
+package com.example.desafiodimensa.ui.movie.home
 
-import MovieAdapter
+import com.example.desafiodimensa.ui.movie.adapter.MovieAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

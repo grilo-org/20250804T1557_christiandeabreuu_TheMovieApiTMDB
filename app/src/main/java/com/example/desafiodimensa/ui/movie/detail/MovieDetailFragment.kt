@@ -1,6 +1,6 @@
-package com.example.desafiodimensa.ui.movie
+package com.example.desafiodimensa.ui.movie.detail
 
-import MovieAdapter
+import com.example.desafiodimensa.ui.movie.adapter.MovieAdapter
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
@@ -14,6 +14,7 @@ import com.example.desafiodimensa.R
 import com.example.desafiodimensa.data.Movie
 import com.example.desafiodimensa.databinding.FragmentMovieDetailBinding
 import com.example.desafiodimensa.extensions.viewBinding
+import com.example.desafiodimensa.ui.movie.adapter.ReviewAdapter
 
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
@@ -57,6 +58,13 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
             reviewAdapter.updateReviews(reviews)
         })
         getInfosMovieDetail()
+        goToBack()
+    }
+
+    private fun goToBack() {
+        binding.buttonBack.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -70,7 +78,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
             binding.ratingTextView.text = "${it.vote_average}/10 média de votos"
             binding.durationTextView.text = "Duração: ${it.runtime} minutos"
             binding.posterImageView.load("https://image.tmdb.org/t/p/w500${it.poster_path}"){
-                transformations(RoundedCornersTransformation(8f))
+                transformations(RoundedCornersTransformation(50f))
             }
             binding.posterImageViewDetail.load("https://image.tmdb.org/t/p/w500${it.backdrop_path}")
 

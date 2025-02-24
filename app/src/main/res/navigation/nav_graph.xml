@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/movieHomeFragment"
-        android:name="com.example.desafiodimensa.ui.movie.MovieHomeFragment"
+        android:name="com.example.desafiodimensa.ui.movie.home.MovieHomeFragment"
         android:label="MovieHomeFragment"
         tools:layout="@layout/fragment_movie_home">
         <action
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/movieDetailFragment"
-        android:name="com.example.desafiodimensa.ui.movie.MovieDetailFragment"
+        android:name="com.example.desafiodimensa.ui.movie.detail.MovieDetailFragment"
         android:label="MovieDetailFragment"
         tools:layout="@layout/fragment_movie_detail">
         <action
