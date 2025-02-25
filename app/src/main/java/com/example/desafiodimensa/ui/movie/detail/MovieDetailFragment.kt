@@ -65,7 +65,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         viewModel.detailsMovie.observe(viewLifecycleOwner) { details ->
             binding.genresTextView.text = details.genres.joinToString(", ") { genre -> genre.name }
             val formattedDuration = formatMovieDuration(details.runtime?.toInt() ?: 100)
-            binding.durationTextView.text = "Duração: $formattedDuration"
+            binding.durationTextView.text = " $formattedDuration"
         }
 
 
