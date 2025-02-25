@@ -1,17 +1,19 @@
 package com.example.desafiodimensa.data.model
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Movie(
+    @SerializedName("backdrop_path") val backdropPath: String,
+    @SerializedName("poster_path") val posterPath: String,
+    @SerializedName("release_date") val releaseDate: String,
+    @SerializedName("vote_average") val voteAverage: Double,
+    @SerializedName("original_language") val language: String,
     val id: Int,
     val title: String,
     val overview: String,
-    val backdrop_path: String,
-    val poster_path: String,
-    val release_date: String,
-    val vote_average: Double,
-    val runtime: Int,
+    @SerializedName("runtime") val runtime: Int?,
     val genres: List<Genre>?
 ) : Parcelable

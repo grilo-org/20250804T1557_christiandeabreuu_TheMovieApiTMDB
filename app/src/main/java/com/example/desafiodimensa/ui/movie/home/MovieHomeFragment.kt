@@ -88,10 +88,8 @@ class MovieHomeFragment : Fragment() {
             topRatedAdapter.updateMovies(movies)
         })
 
-        // Observa mensagens de erro
         viewModel.errorMessage.observe(viewLifecycleOwner, Observer { error ->
             error?.let {
-                // Exibe um Toast com a mensagem de erro
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
         })

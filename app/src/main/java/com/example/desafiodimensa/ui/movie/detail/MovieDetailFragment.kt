@@ -1,8 +1,11 @@
 package com.example.desafiodimensa.ui.movie.detail
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -20,7 +23,7 @@ import com.example.desafiodimensa.ui.movie.adapter.ReviewAdapter
 
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
-    private val viewModel: MovieDetailViewModel by viewModel() // Injeção do ViewModel com Koin
+    private val viewModel: MovieDetailViewModel by viewModel()
 
     private val binding by viewBinding(FragmentMovieDetailBinding::bind)
     private lateinit var reviewAdapter: ReviewAdapter
@@ -34,6 +37,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -58,6 +62,12 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         viewModel.reviewsComments.observe(viewLifecycleOwner, Observer { reviews ->
             reviewAdapter.updateReviews(reviews)
         })
+
+        viewModel.errorMessage.observe(viewLifecycleOwner, Observer { error ->
+            error?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        })
         getInfosMovieDetail()
         goToBack()
     }
@@ -68,25 +78,34 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @SuppressLint("SetTextI18n")
     private fun getInfosMovieDetail() {
         val infosMovie = arguments?.getParcelable<Movie>(Constants.KEY, Movie::class.java)
 
         infosMovie?.let {
             binding.titleTextView.text = it.title
-            binding.genresTextView.text = it.genres?.joinToString(", ") { genre -> genre.name }
+            binding.genresTextView.text = it.genres?.joinToString(", ") { genre -> genre.name } ?: "Action"
             binding.synopsisTextView.text = it.overview
-            binding.ratingTextView.text = "${it.vote_average}/10 média de votos"
-            binding.durationTextView.text = "Duração: ${it.runtime} minutos"
-            binding.posterImageView.load("${getString(R.string.movie_detail_fragment_base_image_url)}${it.poster_path}") {
+            binding.ratingTextView.text = "${it.voteAverage}/10 média de votos"
+
+            binding.posterImageView.load("${getString(R.string.movie_detail_fragment_base_image_url)}${it.posterPath}") {
                 transformations(RoundedCornersTransformation(50f))
             }
-            binding.posterImageViewDetail.load("${getString(R.string.movie_detail_fragment_base_image_url)}${it.backdrop_path}")
+            binding.posterImageViewDetail.load("${getString(R.string.movie_detail_fragment_base_image_url)}${it.backdropPath}")
+
+            val formattedDuration = formatMovieDuration(it.runtime?.toInt() ?: 100)
+            binding.durationTextView.text = "Duração: $formattedDuration"
 
             viewModel.getSimularMovies(id = it.id, Constants.API_KEY)
-
-            viewModel.getReviews(id = it.id, Constants.API_KEY)
+            viewModel.getReviews(movieId = it.id)
         }
+    }
+
+    private fun formatMovieDuration(durationInMinutes: Int): String {
+        val hours = durationInMinutes / 60
+        val minutes = durationInMinutes % 60
+        return "${hours}h ${minutes}m"
     }
 }
 

@@ -4,6 +4,7 @@ import com.example.desafiodimensa.data.remote.TMDbApiService
 import com.example.desafiodimensa.domain.repository.MovieRepository
 import com.example.desafiodimensa.domain.repository.ReviewRepository
 import com.example.desafiodimensa.domain.usecase.GetComingSoonMoviesUseCase
+import com.example.desafiodimensa.domain.usecase.GetDetailsMovieUseCase
 import com.example.desafiodimensa.domain.usecase.GetMorePopularMoviesUseCase
 import com.example.desafiodimensa.domain.usecase.GetNowPlayingMoviesUseCase
 import com.example.desafiodimensa.domain.usecase.GetReviewsUseCase
@@ -18,21 +19,20 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 val appModule = module {
-    // Repositório
-    single { MovieRepository(get()) }
-    single { ReviewRepository(get()) }
 
-    // UseCases
-    single { GetReviewsUseCase(get()) }
-    single { GetSimilarMoviesUseCase(get()) }
+    factory { MovieRepository(get()) }
+    factory { ReviewRepository(get()) }
+
+    factory { GetReviewsUseCase(get()) }
+    factory { GetSimilarMoviesUseCase(get()) }
+    factory { GetDetailsMovieUseCase(get()) }
 
     factory { GetNowPlayingMoviesUseCase(get()) }
     factory { GetComingSoonMoviesUseCase(get()) }
     factory { GetMorePopularMoviesUseCase(get()) }
     factory { GetTopRatedMoviesUseCase(get()) }
 
-    // ViewModel
-    viewModel { MovieDetailViewModel(get(), get()) }
+    viewModel { MovieDetailViewModel( get() , get(), get()) }
     viewModel { MovieHomeViewModel(get(), get(), get(), get()) }
 }
 

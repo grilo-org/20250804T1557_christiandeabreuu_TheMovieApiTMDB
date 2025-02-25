@@ -72,7 +72,7 @@ class MovieHomeViewModel(
                     R.string.movie_home_view_model_log_tag.toString(),
                     R.string.movie_home_view_model_log_error_message.toString() + " ${e.message}"
                 )
-                _errorMessage.value = "Erro ao carregar filmes em breve: ${e.message}"
+                _errorMessage.value = "Erro ao carregar filmes mais popular: ${e.message}"
             }
         }
     }

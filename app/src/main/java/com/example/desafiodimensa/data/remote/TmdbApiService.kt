@@ -1,5 +1,6 @@
 package com.example.desafiodimensa.data.remote
 
+import com.example.desafiodimensa.data.model.DetailsMovie
 import com.example.desafiodimensa.data.model.MovieResponse
 import com.example.desafiodimensa.data.model.ReviewResponse
 import retrofit2.http.GET
@@ -48,5 +49,5 @@ interface TMDbApiService {
     suspend fun getMovieDetail(
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String,
-    ): MovieResponse
+    ): DetailsMovie
 }

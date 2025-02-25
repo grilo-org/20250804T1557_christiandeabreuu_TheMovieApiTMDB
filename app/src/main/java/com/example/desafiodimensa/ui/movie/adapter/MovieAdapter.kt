@@ -38,7 +38,7 @@ class MovieAdapter(
             itemView.findViewById(R.id.posterImageView)
 
         fun bind(movie: Movie) {
-            val posterUrl = "${Constants.IMAGE_URL}${movie.poster_path}"
+            val posterUrl = "${Constants.IMAGE_URL}${movie.posterPath}"
 
             posterImageView.load(posterUrl) {
                 transformations(RoundedCornersTransformation(8f))

@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
+    testImplementation(libs.testng)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
@@ -76,14 +77,18 @@ dependencies {
     // RecyclerView
     implementation(libs.recyclerview)
 
-//    implementation "io.insert-koin:koin-android:3.4.0" // Versão mais recente
-//    implementation "io.insert-koin:koin-androidx-compose:3.4.0" // Se estiver usando Compose
-//    implementation "io.insert-koin:koin-androidx-workmanager:3.4.0"
-
     //Koin
     implementation(libs.koin.android)
     implementation(libs.koin.android.compat)
     implementation(libs.koin.androidx.workmanager)
+
+    // MockK para testes unitários
+    testImplementation(libs.mockk)
+    // MockK para testes instrumentados (Android)
+    androidTestImplementation(libs.mockk.android)
+
+    // Coroutines Test
+    testImplementation(libs.kotlinx.coroutines.test)
 
 
 }
