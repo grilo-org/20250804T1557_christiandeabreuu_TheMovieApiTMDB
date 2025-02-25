@@ -40,11 +40,9 @@ class MovieHomeViewModel(
             try {
                 _nowPlayingMovies.value = getNowPlayingMoviesUseCase(apiKey)
             } catch (e: Exception) {
-                Log.e(
-                    R.string.movie_home_view_model_log_tag.toString(),
+                Log.e("MovieHomeViewModel", "Erro ao buscar filmes:" + " ${e.message}")
+                _errorMessage.value =
                     R.string.movie_home_view_model_log_error_message.toString() + " ${e.message}"
-                )
-                _errorMessage.value = "Erro ao carregar filmes em cartaz: ${e.message}"
             }
         }
     }
@@ -54,11 +52,9 @@ class MovieHomeViewModel(
             try {
                 _comingSoonMovies.value = getComingSoonMoviesUseCase(apiKey)
             } catch (e: Exception) {
-                Log.e(
-                    R.string.movie_home_view_model_log_tag.toString(),
-                    R.string.movie_home_view_model_log_error_message.toString() + " ${e.message}"
-                )
-                _errorMessage.value = "Erro ao carregar filmes em breve: ${e.message}"
+                Log.e("MovieHomeViewModel", "Erro ao buscar filmes:" + " ${e.message}")
+                _errorMessage.value =
+                    R.string.movie_home_view_model_log_error_message.toString() + "${e.message}"
             }
         }
     }
@@ -68,11 +64,9 @@ class MovieHomeViewModel(
             try {
                 _mostPopularMovies.value = getMorePopularMoviesUseCase(apiKey)
             } catch (e: Exception) {
-                Log.e(
-                    R.string.movie_home_view_model_log_tag.toString(),
+                Log.e("MovieHomeViewModel", "Erro ao buscar filmes:" + " ${e.message}")
+                _errorMessage.value =
                     R.string.movie_home_view_model_log_error_message.toString() + " ${e.message}"
-                )
-                _errorMessage.value = "Erro ao carregar filmes mais popular: ${e.message}"
             }
         }
     }
@@ -83,11 +77,9 @@ class MovieHomeViewModel(
                 _topRatedMovies.value = getTopRatedMoviesUseCase(apiKey)
 
             } catch (e: Exception) {
-                Log.e(
-                    R.string.movie_home_view_model_log_tag.toString(),
+                Log.e("MovieHomeViewModel", "Erro ao buscar filmes:" + " ${e.message}")
+                _errorMessage.value =
                     R.string.movie_home_view_model_log_error_message.toString() + " ${e.message}"
-                )
-                _errorMessage.value = "Erro ao carregar filmes em breve: ${e.message}"
             }
         }
     }

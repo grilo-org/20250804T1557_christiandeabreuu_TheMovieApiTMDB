@@ -14,6 +14,9 @@
     <string name="movie_detail_fragment_log_tag">MovieDetailFragment</string>
     <string name="movie_detail_fragment_log_message">Inicializando componentes</string>
     <string name="movie_detail_fragment_base_image_url">https://image.tmdb.org/t/p/w500</string>
+    <string name="movie_detail_fragment_vote_average">/10 média de votos</string>
+    <string name="movie_detail_fragment_hours">hora(s)</string>
+    <string name="movie_detail_fragment_minutes">minuto(s)</string>
 
     <string name="movie_detail_view_model_log_tag">MovieDetailViewModel</string>
     <string name="movie_detail_view_model_log_reviews_message">Reviews: </string>
@@ -37,7 +40,7 @@
     <string name="content_description_icon_star">icone estrela</string>
     <string name="content_description_vote_average_movie">Média de votos do filme</string>
     <string name="content_description_synopse_title_movie">"Sinopse "</string>
-    <string name="content_description_synopse_movie">sinopese do filme</string>
+    <string name="content_description_synopse_movie">sinopse do filme</string>
     <string name="content_description_coments_title">Comentários</string>
     <string name="content_description_more_how_this_title">Mais Como Este</string>
     <string name="content_description_name_title">nome do autor do comentario</string>

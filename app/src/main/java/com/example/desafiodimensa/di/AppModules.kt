@@ -12,6 +12,7 @@ import com.example.desafiodimensa.domain.usecase.GetSimilarMoviesUseCase
 import com.example.desafiodimensa.domain.usecase.GetTopRatedMoviesUseCase
 import com.example.desafiodimensa.ui.movie.detail.MovieDetailViewModel
 import com.example.desafiodimensa.ui.movie.home.MovieHomeViewModel
+import com.example.desafiodimensa.util.Constants
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -32,16 +33,14 @@ val appModule = module {
     factory { GetMorePopularMoviesUseCase(get()) }
     factory { GetTopRatedMoviesUseCase(get()) }
 
-    viewModel { MovieDetailViewModel( get() , get(), get()) }
+    viewModel { MovieDetailViewModel(get(), get(), get()) }
     viewModel { MovieHomeViewModel(get(), get(), get(), get()) }
 }
 
 val networkModule = module {
     single {
-        Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        Retrofit.Builder().baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create()).build()
             .create(TMDbApiService::class.java)
     }
 }

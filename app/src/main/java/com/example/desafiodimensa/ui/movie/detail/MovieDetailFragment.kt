@@ -92,10 +92,12 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         infosMovie?.let {
             binding.titleTextView.text = it.title
             binding.synopsisTextView.text = it.overview
-            binding.ratingTextView.text = "${it.voteAverage}/10 média de votos"
+            binding.ratingTextView.text =
+                "${it.voteAverage}" + getString(R.string.movie_detail_fragment_vote_average)
 
             binding.posterImageView.load("${getString(R.string.movie_detail_fragment_base_image_url)}${it.posterPath}") {
-                transformations(RoundedCornersTransformation(50f)) }
+                transformations(RoundedCornersTransformation(50f))
+            }
             binding.posterImageViewDetail.load("${getString(R.string.movie_detail_fragment_base_image_url)}${it.backdropPath}")
 
             viewModel.getSimularMovies(id = it.id, Constants.API_KEY)
@@ -107,7 +109,9 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
     private fun formatMovieDuration(durationInMinutes: Int): String {
         val hours = durationInMinutes / 60
         val minutes = durationInMinutes % 60
-        return "${hours}hora(s) ${minutes}minuto(s)"
+        return "${hours}" + getString(R.string.movie_detail_fragment_hours) + " ${minutes}" + getString(
+            R.string.movie_detail_fragment_minutes
+        )
     }
 }
 

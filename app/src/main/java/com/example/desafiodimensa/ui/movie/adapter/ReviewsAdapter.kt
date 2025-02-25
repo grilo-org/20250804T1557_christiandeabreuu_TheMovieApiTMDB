@@ -3,6 +3,7 @@ package com.example.desafiodimensa.ui.movie.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.desafiodimensa.R
 import com.example.desafiodimensa.data.model.Review
 import com.example.desafiodimensa.databinding.ItemComentsDetailBinding
 
@@ -27,14 +28,14 @@ class ReviewAdapter(
         if (newReviews.isNullOrEmpty()) {
             val defaultReview = listOf(
                 Review(
-                    author = "Alexandra",
-                    content = "It was great. This movie was a continuation of the Avengers of the Eternal War. See it first and then this movie"
+                    author = R.string.reviews_adapter_name_1.toString(),
+                    content = R.string.reviews_adapter_comments_1.toString()
                 ), Review(
-                    author = "Jason",
-                    content = "The best hero is Iron Man. Not because of his clothes, but because of his personality"
+                    author = R.string.reviews_adapter_name_2.toString(),
+                    content = R.string.reviews_adapter_comments_2.toString()
                 ), Review(
-                    author = "Amanda",
-                    content = "It was interesting. I think Loki and Stark and Captain America will die soon"
+                    author = R.string.reviews_adapter_name_3.toString(),
+                    content = R.string.reviews_adapter_comments_3.toString()
                 )
             )
             listReview = defaultReview

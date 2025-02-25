@@ -1,4 +1,4 @@
-package com.example.desafiodimensa.ui.splash
+package com.example.desafiodimensa.splash
 
 import android.content.Intent
 import android.os.Bundle

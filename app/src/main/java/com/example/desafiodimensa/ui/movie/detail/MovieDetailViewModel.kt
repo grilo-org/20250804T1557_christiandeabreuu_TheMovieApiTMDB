@@ -40,10 +40,9 @@ class MovieDetailViewModel(
                     _reviewsComments.value = getReviewsUseCase(movieId, Constants.API_KEY)
                 }
             } catch (e: Exception) {
-                Log.e(
-                    R.string.movie_home_view_model_log_tag.toString(),
-                    R.string.movie_home_view_model_log_error_message.toString() + " ${e.message}"
-                )
+                Log.e("MovieDetailFragment", "Erro ao buscar filmes:" + " ${e.message}")
+                _errorMessage.value =
+                    R.string.movie_detail_view_model_log_error_message_movie.toString() + " ${e.message}"
             }
         }
     }
@@ -53,11 +52,9 @@ class MovieDetailViewModel(
             try {
                 _similarMovies.value = getSimilarMoviesUseCase(id, apiKey)
             } catch (e: Exception) {
-                Log.e(
-                    R.string.movie_home_view_model_log_tag.toString(),
-                    R.string.movie_home_view_model_log_error_message.toString() + " ${e.message}"
-                )
-                _errorMessage.value = "Erro ao carregar filmes em breve: ${e.message}"
+                Log.e("MovieDetailFragment", "Erro ao buscar filmes:" + " ${e.message}")
+                _errorMessage.value =
+                    R.string.movie_detail_view_model_log_error_message_movie.toString() + " ${e.message}"
             }
         }
     }
@@ -70,11 +67,9 @@ class MovieDetailViewModel(
                 }
 
             } catch (e: Exception) {
-                Log.e(
-                    R.string.movie_home_view_model_log_tag.toString(),
-                    R.string.movie_home_view_model_log_error_message.toString() + " ${e.message}"
-                )
-                _errorMessage.value = "Erro ao carregar detalhes do filme: ${e.message}"
+                Log.e("MovieDetailFragment", "Erro ao buscar filmes:" + " ${e.message}")
+                _errorMessage.value =
+                    R.string.movie_detail_view_model_log_error_message_movie.toString() + " ${e.message}"
             }
         }
     }

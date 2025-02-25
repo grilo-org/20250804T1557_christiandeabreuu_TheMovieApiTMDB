@@ -12,7 +12,7 @@ class AppApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@AppApplication)
-            modules(appModule, networkModule) // Certifique-se de que o módulo está sendo carregado
+            modules(appModule, networkModule)
         }
     }
 }
