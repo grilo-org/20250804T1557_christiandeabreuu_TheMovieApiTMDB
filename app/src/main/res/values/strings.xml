@@ -27,7 +27,25 @@
     <string name="reviews_adapter_name_3">Amanda</string>
     <string name="reviews_adapter_comments_3">It was interesting. I think Loki and Stark and Captain America will die soon</string>
 
-
+    <string name="content_description_button_back">botão voltar</string>
+    <string name="content_description_logo_image">imagem logotipo move2you</string>
+    <string name="content_description_poster_image_background">poster filme de detalhe</string>
+    <string name="content_description_poster_image">poster filme frontal</string>
+    <string name="content_description_title_text">titulo do filme</string>
+    <string name="content_description_movie_runtime">tempo de duração do filme</string>
+    <string name="content_description_genre_movie">genero filme</string>
+    <string name="content_description_icon_star">icone estrela</string>
+    <string name="content_description_vote_average_movie">Média de votos do filme</string>
+    <string name="content_description_synopse_title_movie">"Sinopse "</string>
+    <string name="content_description_synopse_movie">sinopese do filme</string>
+    <string name="content_description_coments_title">Comentários</string>
+    <string name="content_description_more_how_this_title">Mais Como Este</string>
+    <string name="content_description_name_title">nome do autor do comentario</string>
+    <string name="content_description_comments_movie">comentário do autor</string>
+    <string name="content_description_now_playing">Em Exibição</string>
+    <string name="content_description_comming_soon_title">Em Breve</string>
+    <string name="content_description_more_popular_title">Mais Populares</string>
+    <string name="content_description_top_rated_title">Melhores Avaliados</string>
 
 
 </resources>
