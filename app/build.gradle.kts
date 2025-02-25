@@ -90,5 +90,7 @@ dependencies {
     // Coroutines Test
     testImplementation(libs.kotlinx.coroutines.test)
 
+    // Dependência para InstantTaskExecutorRule
+    testImplementation(libs.androidx.arch.core.testing)
 
 }

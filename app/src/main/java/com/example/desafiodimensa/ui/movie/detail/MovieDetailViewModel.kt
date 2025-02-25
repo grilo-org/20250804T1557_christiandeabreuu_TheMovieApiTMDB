@@ -37,7 +37,7 @@ class MovieDetailViewModel(
         viewModelScope.launch {
             try {
                 movieId?.let {
-                    _reviewsComments.value = getReviewsUseCase(movieId,Constants.API_KEY)
+                    _reviewsComments.value = getReviewsUseCase(movieId, Constants.API_KEY)
                 }
             } catch (e: Exception) {
                 Log.e(
@@ -52,7 +52,7 @@ class MovieDetailViewModel(
     fun getSimularMovies(id: Int, apiKey: String) {
         viewModelScope.launch {
             try {
-                _similarMovies.value = getSimilarMoviesUseCase(id,apiKey)
+                _similarMovies.value = getSimilarMoviesUseCase(id, apiKey)
             } catch (e: Exception) {
                 Log.e(
                     R.string.movie_home_view_model_log_tag.toString(),
@@ -67,7 +67,7 @@ class MovieDetailViewModel(
         viewModelScope.launch {
             try {
                 movieId?.let {
-                    _detailsMovie.value = getDetailsMoviesUseCase(movieId,Constants.API_KEY)
+                    _detailsMovie.value = getDetailsMoviesUseCase(movieId, Constants.API_KEY)
                 }
 
             } catch (e: Exception) {
@@ -79,8 +79,6 @@ class MovieDetailViewModel(
             }
         }
     }
-
-
 
 
 }

@@ -37,6 +37,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -63,6 +64,13 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
             reviewAdapter.updateReviews(reviews)
         })
 
+        viewModel.detailsMovie.observe(viewLifecycleOwner, Observer { details ->
+            binding.genresTextView.text = details.genres.joinToString(", ") { genre -> genre.name } ?: "Action"
+            val formattedDuration = formatMovieDuration(details.runtime?.toInt() ?: 100)
+            binding.durationTextView.text = "Duração: $formattedDuration"
+        })
+
+
         viewModel.errorMessage.observe(viewLifecycleOwner, Observer { error ->
             error?.let {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
@@ -85,7 +93,6 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
         infosMovie?.let {
             binding.titleTextView.text = it.title
-            binding.genresTextView.text = it.genres?.joinToString(", ") { genre -> genre.name } ?: "Action"
             binding.synopsisTextView.text = it.overview
             binding.ratingTextView.text = "${it.voteAverage}/10 média de votos"
 
@@ -94,11 +101,11 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
             }
             binding.posterImageViewDetail.load("${getString(R.string.movie_detail_fragment_base_image_url)}${it.backdropPath}")
 
-            val formattedDuration = formatMovieDuration(it.runtime?.toInt() ?: 100)
-            binding.durationTextView.text = "Duração: $formattedDuration"
+
 
             viewModel.getSimularMovies(id = it.id, Constants.API_KEY)
             viewModel.getReviews(movieId = it.id)
+            viewModel.getDetailsMovies(movieId = it.id)
         }
     }
 

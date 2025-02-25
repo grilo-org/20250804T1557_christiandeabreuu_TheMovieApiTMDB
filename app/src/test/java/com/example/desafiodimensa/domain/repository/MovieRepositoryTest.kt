@@ -1,5 +1,6 @@
 package com.example.desafiodimensa.domain.repository
 
+import com.example.desafiodimensa.data.model.DetailsMovie
 import com.example.desafiodimensa.data.model.Genre
 import com.example.desafiodimensa.data.model.Movie
 import com.example.desafiodimensa.data.model.MovieResponse
@@ -176,5 +177,34 @@ class MovieRepositoryTest {
 
         // Assert
         assertEquals(mockResponse.results, result)
+    }
+
+    @Test
+    fun `getDetailsMovie should return list of movies`() = runBlocking {
+        // Arrange
+        val movieId = 123
+        val listGenres = listOf(Genre("1"), Genre("2"), Genre("3"))
+        val apiKey = "test_api_key"
+        val expectedDetailsMovie = DetailsMovie(backdropPath = "url1",
+            originalLanguage = "pt",
+            originalTitle = "Another Movie",
+            posterPath = "url2",
+            id = 2,
+            title = "Another Movie",
+            overview = "This is another movie overview.",
+            voteAverage = 7.8,
+            language = "es",
+            runtime = 95,
+            voteCount = 100,
+            genres = listGenres
+        )
+
+        coEvery { apiService.getMovieDetail(movieId, apiKey) } returns expectedDetailsMovie
+
+        // Act
+        val result = repository.getDetailsMovie(movieId, apiKey)
+
+        // Assert
+        assertEquals(expectedDetailsMovie, result)
     }
 }
