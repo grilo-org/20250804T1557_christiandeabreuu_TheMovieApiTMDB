@@ -7,19 +7,18 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.example.desafiodimensa.util.Constants
 import com.example.desafiodimensa.R
 import com.example.desafiodimensa.data.model.Movie
 import com.example.desafiodimensa.databinding.FragmentMovieDetailBinding
 import com.example.desafiodimensa.extensions.viewBinding
 import com.example.desafiodimensa.ui.movie.adapter.MovieAdapter
 import com.example.desafiodimensa.ui.movie.adapter.ReviewAdapter
+import com.example.desafiodimensa.util.Constants
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
@@ -49,33 +48,32 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         val recyclerViewReviews = binding.recyclerViewComments
         recyclerViewReviews.layoutManager = LinearLayoutManager(requireContext())
 
-        relatedMoviesAdapter = MovieAdapter(emptyList()) { movie ->
-        }
+        relatedMoviesAdapter = MovieAdapter(emptyList()) {}
         recyclerViewRelatedMovies.adapter = relatedMoviesAdapter
 
         reviewAdapter = ReviewAdapter(emptyList())
         recyclerViewReviews.adapter = reviewAdapter
 
-        viewModel.similarMovies.observe(viewLifecycleOwner, Observer { movies ->
+        viewModel.similarMovies.observe(viewLifecycleOwner) { movies ->
             relatedMoviesAdapter.updateMovies(movies)
-        })
+        }
 
-        viewModel.reviewsComments.observe(viewLifecycleOwner, Observer { reviews ->
+        viewModel.reviewsComments.observe(viewLifecycleOwner) { reviews ->
             reviewAdapter.updateReviews(reviews)
-        })
+        }
 
-        viewModel.detailsMovie.observe(viewLifecycleOwner, Observer { details ->
-            binding.genresTextView.text = details.genres.joinToString(", ") { genre -> genre.name } ?: "Action"
+        viewModel.detailsMovie.observe(viewLifecycleOwner) { details ->
+            binding.genresTextView.text = details.genres.joinToString(", ") { genre -> genre.name }
             val formattedDuration = formatMovieDuration(details.runtime?.toInt() ?: 100)
             binding.durationTextView.text = "Duração: $formattedDuration"
-        })
+        }
 
 
-        viewModel.errorMessage.observe(viewLifecycleOwner, Observer { error ->
+        viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
-        })
+        }
         getInfosMovieDetail()
         goToBack()
     }
@@ -89,7 +87,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @SuppressLint("SetTextI18n")
     private fun getInfosMovieDetail() {
-        val infosMovie = arguments?.getParcelable<Movie>(Constants.KEY, Movie::class.java)
+        val infosMovie = arguments?.getParcelable(Constants.KEY, Movie::class.java)
 
         infosMovie?.let {
             binding.titleTextView.text = it.title
@@ -97,11 +95,8 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
             binding.ratingTextView.text = "${it.voteAverage}/10 média de votos"
 
             binding.posterImageView.load("${getString(R.string.movie_detail_fragment_base_image_url)}${it.posterPath}") {
-                transformations(RoundedCornersTransformation(50f))
-            }
+                transformations(RoundedCornersTransformation(50f)) }
             binding.posterImageViewDetail.load("${getString(R.string.movie_detail_fragment_base_image_url)}${it.backdropPath}")
-
-
 
             viewModel.getSimularMovies(id = it.id, Constants.API_KEY)
             viewModel.getReviews(movieId = it.id)
@@ -112,7 +107,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
     private fun formatMovieDuration(durationInMinutes: Int): String {
         val hours = durationInMinutes / 60
         val minutes = durationInMinutes % 60
-        return "${hours}h ${minutes}m"
+        return "${hours}hora(s) ${minutes}minuto(s)"
     }
 }
 

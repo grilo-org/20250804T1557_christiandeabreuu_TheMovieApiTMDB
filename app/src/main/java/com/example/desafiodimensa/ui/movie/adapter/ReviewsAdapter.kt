@@ -46,7 +46,7 @@ class ReviewAdapter(
         }
     }
 
-    class ReviewsViewHolder(val binding: ItemComentsDetailBinding) :
+    class ReviewsViewHolder(private val binding: ItemComentsDetailBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(review: Review) {

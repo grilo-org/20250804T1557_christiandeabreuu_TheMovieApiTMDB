@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.desafiodimensa.util.Constants
 import com.example.desafiodimensa.R
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.example.desafiodimensa.data.model.Movie
 import com.example.desafiodimensa.databinding.FragmentMovieHomeBinding
 import com.example.desafiodimensa.ui.movie.adapter.MovieAdapter
+import com.example.desafiodimensa.util.Constants
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieHomeFragment : Fragment() {
 
@@ -72,28 +71,27 @@ class MovieHomeFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        viewModel.nowPlayingMovies.observe(viewLifecycleOwner, Observer { movies ->
+        viewModel.nowPlayingMovies.observe(viewLifecycleOwner) { movies ->
             nowPlayingAdapter.updateMovies(movies)
-        })
+        }
 
-        viewModel.comingSoonMovies.observe(viewLifecycleOwner, Observer { movies ->
+        viewModel.comingSoonMovies.observe(viewLifecycleOwner) { movies ->
             comingSoonAdapter.updateMovies(movies)
-        })
+        }
 
-        viewModel.mostPopularMovies.observe(viewLifecycleOwner, Observer { movies ->
+        viewModel.mostPopularMovies.observe(viewLifecycleOwner) { movies ->
             morePopularAdapter.updateMovies(movies)
-        })
+        }
 
-        viewModel.topRatedMovies.observe(viewLifecycleOwner, Observer { movies ->
+        viewModel.topRatedMovies.observe(viewLifecycleOwner) { movies ->
             topRatedAdapter.updateMovies(movies)
-        })
+        }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner, Observer { error ->
+        viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
-        })
-
+        }
     }
 
     private fun fetchMovies() {
