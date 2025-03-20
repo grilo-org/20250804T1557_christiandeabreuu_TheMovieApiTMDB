@@ -8,44 +8,44 @@ import kotlinx.coroutines.withContext
 
 class MovieRepository(private val apiService: TMDbApiService) {
 
-    suspend fun getSimilarMovies(movieId: Int, apiKey: String): List<Movie> {
+    suspend fun getSimilarMovies(movieId: Int,): List<Movie> {
         return withContext(Dispatchers.IO) {
-            val response = apiService.getSimilarMovies(movieId, apiKey)
+            val response = apiService.getSimilarMovies(movieId)
             response.results
         }
     }
 
-    suspend fun getNowPlayingMovies(apiKey: String): List<Movie> {
+    suspend fun getNowPlayingMovies(): List<Movie> {
         return withContext(Dispatchers.IO) {
-            val response = apiService.getNowPlayingMovies(apiKey)
+            val response = apiService.getNowPlayingMovies()
             response.results
         }
     }
 
-    suspend fun getComingSoonMovies(apiKey: String): List<Movie> {
+    suspend fun getComingSoonMovies(): List<Movie> {
         return withContext(Dispatchers.IO) {
-            val response = apiService.getComingSoonMovies(apiKey)
+            val response = apiService.getComingSoonMovies()
             response.results
         }
     }
 
-    suspend fun getMorePopularMovies(apiKey: String): List<Movie> {
+    suspend fun getMorePopularMovies(): List<Movie> {
         return withContext(Dispatchers.IO) {
-            val response = apiService.getMorePopularMovies(apiKey)
+            val response = apiService.getMorePopularMovies()
             response.results
         }
     }
 
-    suspend fun getTopRatedMovies(apiKey: String): List<Movie> {
+    suspend fun getTopRatedMovies(): List<Movie> {
         return withContext(Dispatchers.IO) {
-            val response = apiService.getTopRatedMovies(apiKey)
+            val response = apiService.getTopRatedMovies()
             response.results
         }
     }
 
-    suspend fun getDetailsMovie(movieId: Int, apiKey: String): DetailsMovie {
+    suspend fun getDetailsMovie(movieId: Int): DetailsMovie {
         return withContext(Dispatchers.IO) {
-            apiService.getMovieDetail(movieId, apiKey)
+            apiService.getMovieDetail(movieId)
         }
     }
 }

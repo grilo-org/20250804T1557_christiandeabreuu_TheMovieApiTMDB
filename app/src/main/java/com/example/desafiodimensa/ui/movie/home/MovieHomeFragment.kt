@@ -13,7 +13,6 @@ import com.example.desafiodimensa.R
 import com.example.desafiodimensa.data.model.Movie
 import com.example.desafiodimensa.databinding.FragmentMovieHomeBinding
 import com.example.desafiodimensa.ui.movie.adapter.MovieAdapter
-import com.example.desafiodimensa.util.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieHomeFragment : Fragment() {
@@ -29,6 +28,7 @@ class MovieHomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentMovieHomeBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -38,7 +38,6 @@ class MovieHomeFragment : Fragment() {
         setupRecyclerViews()
         setupViewModel()
         fetchMovies()
-
     }
 
     private fun setupRecyclerViews() {
@@ -95,10 +94,10 @@ class MovieHomeFragment : Fragment() {
     }
 
     private fun fetchMovies() {
-        viewModel.fetchNowPlayingMovies(Constants.API_KEY)
-        viewModel.fetchComingSoonMovies(Constants.API_KEY)
-        viewModel.fetchMorePopularMovies(Constants.API_KEY)
-        viewModel.fetchTopRatedMovies(Constants.API_KEY)
+        viewModel.fetchNowPlayingMovies()
+        viewModel.fetchComingSoonMovies()
+        viewModel.fetchMorePopularMovies()
+        viewModel.fetchTopRatedMovies()
     }
 
     private fun onMoveClick(movie: Movie) {

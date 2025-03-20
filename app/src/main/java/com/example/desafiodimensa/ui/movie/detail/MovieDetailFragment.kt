@@ -100,7 +100,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
             }
             binding.posterImageViewDetail.load("${getString(R.string.movie_detail_fragment_base_image_url)}${it.backdropPath}")
 
-            viewModel.getSimularMovies(id = it.id, Constants.API_KEY)
+            viewModel.getSimularMovies(id = it.id)
             viewModel.getReviews(movieId = it.id)
             viewModel.getDetailsMovies(movieId = it.id)
         }

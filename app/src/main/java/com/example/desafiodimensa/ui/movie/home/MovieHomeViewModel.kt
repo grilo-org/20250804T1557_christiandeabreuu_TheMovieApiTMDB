@@ -35,10 +35,10 @@ class MovieHomeViewModel(
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
 
-    fun fetchNowPlayingMovies(apiKey: String) {
+    fun fetchNowPlayingMovies() {
         viewModelScope.launch {
             try {
-                _nowPlayingMovies.value = getNowPlayingMoviesUseCase(apiKey)
+                _nowPlayingMovies.value = getNowPlayingMoviesUseCase()
             } catch (e: Exception) {
                 Log.e("MovieHomeViewModel", "Erro ao buscar filmes:" + " ${e.message}")
                 _errorMessage.value =
@@ -47,10 +47,10 @@ class MovieHomeViewModel(
         }
     }
 
-    fun fetchComingSoonMovies(apiKey: String) {
+    fun fetchComingSoonMovies() {
         viewModelScope.launch {
             try {
-                _comingSoonMovies.value = getComingSoonMoviesUseCase(apiKey)
+                _comingSoonMovies.value = getComingSoonMoviesUseCase()
             } catch (e: Exception) {
                 Log.e("MovieHomeViewModel", "Erro ao buscar filmes:" + " ${e.message}")
                 _errorMessage.value =
@@ -59,10 +59,10 @@ class MovieHomeViewModel(
         }
     }
 
-    fun fetchMorePopularMovies(apiKey: String) {
+    fun fetchMorePopularMovies() {
         viewModelScope.launch {
             try {
-                _mostPopularMovies.value = getMorePopularMoviesUseCase(apiKey)
+                _mostPopularMovies.value = getMorePopularMoviesUseCase()
             } catch (e: Exception) {
                 Log.e("MovieHomeViewModel", "Erro ao buscar filmes:" + " ${e.message}")
                 _errorMessage.value =
@@ -71,10 +71,10 @@ class MovieHomeViewModel(
         }
     }
 
-    fun fetchTopRatedMovies(apiKey: String) {
+    fun fetchTopRatedMovies() {
         viewModelScope.launch {
             try {
-                _topRatedMovies.value = getTopRatedMoviesUseCase(apiKey)
+                _topRatedMovies.value = getTopRatedMoviesUseCase()
 
             } catch (e: Exception) {
                 Log.e("MovieHomeViewModel", "Erro ao buscar filmes:" + " ${e.message}")
@@ -84,3 +84,5 @@ class MovieHomeViewModel(
         }
     }
 }
+
+

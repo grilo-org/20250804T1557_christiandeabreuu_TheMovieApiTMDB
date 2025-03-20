@@ -4,7 +4,7 @@ import com.example.desafiodimensa.data.model.Movie
 import com.example.desafiodimensa.domain.repository.MovieRepository
 
 class GetNowPlayingMoviesUseCase(private val repository: MovieRepository) {
-    suspend operator fun invoke(apiKey: String): List<Movie> {
-        return repository.getNowPlayingMovies( apiKey)
+    suspend operator fun invoke(): List<Movie> {
+        return repository.getNowPlayingMovies()
     }
 }

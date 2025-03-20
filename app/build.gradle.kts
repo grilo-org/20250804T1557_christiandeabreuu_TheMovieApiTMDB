@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.play.services.auth)
     testImplementation(libs.junit)
     testImplementation(libs.testng)
     androidTestImplementation(libs.androidx.junit)
@@ -92,5 +93,7 @@ dependencies {
 
     // Dependência para InstantTaskExecutorRule
     testImplementation(libs.androidx.arch.core.testing)
+
+    implementation(libs.rxjava)
 
 }
